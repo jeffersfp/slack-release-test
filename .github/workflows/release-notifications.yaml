@@ -6,17 +6,11 @@ on:
       - published
 
 jobs:
-  release:
-    permissions:
-      contents: read
-      pull-requests: write
-
+  notify_slack:
     runs-on: ubuntu-latest
-
+    name: Notify Slack on Release
     steps:
-
-      - name: Release Notification
-        uses: thedaviddias/publish-release-info-action@v3.3.0
+      - name: Notify Slack on Release
+        uses: tryfabric/notify-slack-on-release@1.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          slack_webhook_urls: ${{ secrets.SLACK_WEBHOOK_URL }}
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
