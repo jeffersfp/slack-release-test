@@ -6,11 +6,10 @@ on:
       - published
 
 jobs:
-  notify_slack:
+  notify-slack:
     runs-on: ubuntu-latest
-    name: Notify Slack on Release
     steps:
-      - name: Notify Slack on Release
-        uses: tryfabric/notify-slack-on-release@1.0.0
+      - name: Send Slack Notification
+        uses: your-org/slack-release-notifications@v1.0.1
         with:
-          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
