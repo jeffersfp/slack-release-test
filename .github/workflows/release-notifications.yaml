@@ -16,7 +16,7 @@ jobs:
     steps:
 
       - name: Release Notification
-        uses: thedaviddias/publish-release-info-action@vX.X.X
+        uses: thedaviddias/publish-release-info-action@v3.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           slack_webhook_urls: ${{ secrets.SLACK_WEBHOOK_URL }}
