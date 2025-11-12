@@ -6,11 +6,21 @@ on:
       - published
 
 jobs:
-  notify-slack:
+  notify_slack:
     runs-on: ubuntu-latest
+    name: Notify Slack on Release
     steps:
-      - name: Send Slack Notification
-        uses: udhaykumarbala/slack-release-notifier@v1.0.1
+      - name: Notify Slack on Releases
+        uses: amendx/slackbot-release@1.0.1
         with:
-          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          action-items: ""
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+# jobs:
+#   notify-slack:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Send Slack Notification
+#         uses: udhaykumarbala/slack-release-notifier@v1.0.1
+#         with:
+#           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+#           action-items: ""
