@@ -11,6 +11,6 @@ jobs:
     name: Notify Slack on Release
     steps:
       - name: Notify Slack on Releases
-        uses: jeffersfp/github-release-slack-notification
+        uses: jeffersfp/github-release-slack-notification@v0.1.x
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
