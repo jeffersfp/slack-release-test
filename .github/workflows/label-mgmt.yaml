@@ -18,3 +18,7 @@ jobs:
           echo "Label Name: ${{ github.event.label.name }}"
           echo "Label Color: ${{ github.event.label.color }}"
           echo "Label Description: ${{ github.event.label.description || 'No description' }}"
+          echo "PR number: ${{ github.event.pull_request.number || 'N/A' }}"
+          echo "Branch name: ${{ github.event.pull_request.head.ref || 'N/A' }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Author: ${{ github.actor }}"
