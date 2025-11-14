@@ -8,6 +8,7 @@ on:
 
 jobs:
   debug_labels:
+    if: github.event.label.name == 'deploy'
     runs-on: ubuntu-latest
     name: Debug Label Event
     steps:
