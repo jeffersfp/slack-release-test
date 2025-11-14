@@ -15,3 +15,4 @@ jobs:
         uses: jeffersfp/github-release-slack-notification@main
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          notify-on-drafts: 'true'          
