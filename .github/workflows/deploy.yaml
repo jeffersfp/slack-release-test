@@ -1,0 +1,53 @@
+name: Deploy Preview Env
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  debug-event:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Debug Event Metadata
+        run: |
+          echo "=== Event Name ==="
+          echo "${{ github.event_name }}"
+          echo ""
+          
+          echo "=== Action ==="
+          echo "${{ github.event.action }}"
+          echo ""
+          
+          echo "=== Label Added ==="
+          echo "Name: ${{ github.event.label.name }}"
+          echo "Color: ${{ github.event.label.color }}"
+          echo "Description: ${{ github.event.label.description }}"
+          echo ""
+          
+          echo "=== Pull Request ==="
+          echo "Number: ${{ github.event.pull_request.number }}"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "State: ${{ github.event.pull_request.state }}"
+          echo "URL: ${{ github.event.pull_request.html_url }}"
+          echo "Head Ref: ${{ github.event.pull_request.head.ref }}"
+          echo "Base Ref: ${{ github.event.pull_request.base.ref }}"
+          echo ""
+          
+          echo "=== Actor ==="
+          echo "Username: ${{ github.actor }}"
+          echo ""
+          
+          echo "=== Repository ==="
+          echo "Full Name: ${{ github.repository }}"
+          echo "Owner: ${{ github.repository_owner }}"
+          echo ""
+  deploy:
+    needs: debug-event
+    runs-on: ubuntu-latest
+    if: github.event.label.name == "deploy"
+    steps:
+      - run: |
+          echo "Deploying preview env"
+          sleep 30
+          echo "Done!"
