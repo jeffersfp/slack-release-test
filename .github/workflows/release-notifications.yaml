@@ -14,4 +14,5 @@ jobs:
         uses: jeffersfp/github-release-slack-notification@v0.1.1
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          include-changelog: true
           mentions: 'U099H2ECZHV' 
