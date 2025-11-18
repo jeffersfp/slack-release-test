@@ -1,25 +1,51 @@
-name: Label Management
+name: PR Label Debug
 
 on:
   pull_request:
-    types:
-      - labeled
-      - unlabeled
+    types: [labeled]
 
 jobs:
-  debug_labels:
-    if: github.event.label.name == 'deploy'
+  debug-event:
     runs-on: ubuntu-latest
-    name: Debug Label Event
+    
     steps:
-      - name: Print Label Event Info
+      - name: Debug Event Metadata
         run: |
-          echo "Event Name: ${{ github.event_name }}"
-          echo "Event Action: ${{ github.event.action }}"
-          echo "Label Name: ${{ github.event.label.name }}"
-          echo "Label Color: ${{ github.event.label.color }}"
-          echo "Label Description: ${{ github.event.label.description || 'No description' }}"
-          echo "PR number: ${{ github.event.pull_request.number || 'N/A' }}"
-          echo "Branch name: ${{ github.event.pull_request.head.ref || 'N/A' }}"
-          echo "Repository: ${{ github.repository }}"
-          echo "Author: ${{ github.actor }}"
+          echo "=== Event Name ==="
+          echo "${{ github.event_name }}"
+          echo ""
+          
+          echo "=== Action ==="
+          echo "${{ github.event.action }}"
+          echo ""
+          
+          echo "=== Label Added ==="
+          echo "Name: ${{ github.event.label.name }}"
+          echo "Color: ${{ github.event.label.color }}"
+          echo "Description: ${{ github.event.label.description }}"
+          echo ""
+          
+          echo "=== Pull Request ==="
+          echo "Number: ${{ github.event.pull_request.number }}"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "State: ${{ github.event.pull_request.state }}"
+          echo "URL: ${{ github.event.pull_request.html_url }}"
+          echo "Head Ref: ${{ github.event.pull_request.head.ref }}"
+          echo "Base Ref: ${{ github.event.pull_request.base.ref }}"
+          echo ""
+          
+          echo "=== Actor ==="
+          echo "Username: ${{ github.actor }}"
+          echo ""
+          
+          echo "=== Repository ==="
+          echo "Full Name: ${{ github.repository }}"
+          echo "Owner: ${{ github.repository_owner }}"
+          echo ""
+          
+          echo "=== All PR Labels ==="
+          echo '${{ toJSON(github.event.pull_request.labels) }}'
+          echo ""
+          
+          echo "=== Full Event Payload ==="
+          echo '${{ toJSON(github.event) }}'
