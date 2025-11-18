@@ -45,7 +45,7 @@ jobs:
   deploy:
     needs: debug-event
     runs-on: ubuntu-latest
-    if: github.event.label.name == "deploy"
+    if: contains(github.event.issue.labels.*.name, 'deploy')
     steps:
       - run: |
           echo "Deploying preview env"
